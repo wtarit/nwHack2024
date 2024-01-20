@@ -1,6 +1,24 @@
 const express = require('express');
 const mongoose = require('mongoose');
-var path = require('path');
+const Bin = require('./models/bin');
+var path = require('path'); 
+
+const app = express();
+
+app.use(express.json());
+app.use(express.urlencoded({extended:true}))
+const { auth } = require('express-openid-connect');
+require('dotenv').config();
+
+const config = {
+    authRequired: false,
+    auth0Logout: true,
+    secret: process.env.SECRET,
+    baseURL: process.env.BASEURL,
+    clientID: process.env.CLIENTID,
+    issuerBaseURL: process.env.ISSUERBASEURL
+  }; 
+
 
 
 const dbURL = 'mongodb+srv://wtarit:PsdByICI2OqOq25P@cluster0.akdqfhs.mongodb.net/?retryWrites=true&w=majority'
@@ -19,13 +37,12 @@ db.once("open", ()=> {
     console.log("Database connection successful!");
 });
 
-const app = express();
-
 
 app.set('view engine', 'html');
 app.engine('html', require('ejs').renderFile);
 app.use(express.static(path.join(__dirname, '\/views')));
-
+// auth router attaches /login, /logout, and /callback routes to the baseURL
+app.use(auth(config));
 
 app.get("/", (req,res) => {
     res.render('home.html')
@@ -36,8 +53,26 @@ app.get("/custodian", (req,res) => {
     res.render('custodian.html')
 })
 
+app.post("/custodian", async (req, res) => {
+    var targetBin = await Bin.findOne({"wasteType":req.body.wasteType})
+    targetBin.currentStatus += 25
+    targetBin.lastInteraction = new Date();
+    targetBin.lastInteractionType = "fill";
+    targetBin.save()
+    res.send({"status":"success"})
+})
+
 app.get("/admin", (req,res) => {
     res.render('admin.html')
+})
+
+app.post("/addbin", (req, res) => {
+    var current_date = new Date();
+    const bin = new Bin(req.body)
+    bin.lastInteraction = current_date
+    console.log(bin)
+    bin.save()
+    res.send({"status":"success"})
 })
 
 app.listen(3000, () => {
