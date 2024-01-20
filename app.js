@@ -13,10 +13,10 @@ require('dotenv').config();
 const config = {
     authRequired: false,
     auth0Logout: true,
-    secret: process.env.SECRET,
-    baseURL: process.env.BASEURL,
-    clientID: process.env.CLIENTID,
-    issuerBaseURL: process.env.ISSUERBASEURL
+    secret: 'a long, randomly-generated string stored in env',
+    baseURL: 'http://localhost:3000',
+    clientID: 'AGHO6yd1otYxYVx7CFYwYEstdQAh3OS5',
+    issuerBaseURL: 'https://dev-w6dlnl36kmnodfgx.us.auth0.com'
   }; 
 
 
@@ -45,7 +45,8 @@ app.use(express.static(path.join(__dirname, '\/views')));
 app.use(auth(config));
 
 app.get("/", (req,res) => {
-    res.render('home.html')
+    console.log(req.oidc.isAuthenticated());
+    res.render('home.html',{isAuthenticated: req.oidc.isAuthenticated()});
 })
 
 
