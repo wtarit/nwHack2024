@@ -1,6 +1,10 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const Bin = require('./models/bin');
 var path = require('path'); 
+
+const app = express();
+
 app.use(express.json());
 app.use(express.urlencoded({extended:true}))
 const { auth } = require('express-openid-connect');
@@ -33,8 +37,6 @@ db.once("open", ()=> {
     console.log("Database connection successful!");
 });
 
-const app = express();
-
 
 app.set('view engine', 'html');
 app.engine('html', require('ejs').renderFile);
@@ -51,8 +53,26 @@ app.get("/custodian", (req,res) => {
     res.render('custodian.html')
 })
 
+app.post("/custodian", async (req, res) => {
+    var targetBin = await Bin.findOne({"wasteType":req.body.wasteType})
+    targetBin.currentStatus += 25
+    targetBin.lastInteraction = new Date();
+    targetBin.lastInteractionType = "fill";
+    targetBin.save()
+    res.send({"status":"success"})
+})
+
 app.get("/admin", (req,res) => {
     res.render('admin.html')
+})
+
+app.post("/addbin", (req, res) => {
+    var current_date = new Date();
+    const bin = new Bin(req.body)
+    bin.lastInteraction = current_date
+    console.log(bin)
+    bin.save()
+    res.send({"status":"success"})
 })
 
 app.listen(3000, () => {
