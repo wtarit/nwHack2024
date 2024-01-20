@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 
-const Schmea = mongoose.Schema;
+const Schema = mongoose.Schema;
 
 
 const binSchema = new Schema ({
@@ -11,3 +11,5 @@ const binSchema = new Schema ({
     lastInteractionType: String,
     currentStatus: Number
 })
+
+module.exports = mongoose.model("Bin", binSchema)
