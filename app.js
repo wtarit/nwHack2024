@@ -1,5 +1,6 @@
 const express = require('express');
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
+var path = require('path');
 
 
 const dbURL = 'mongodb+srv://wtarit:PsdByICI2OqOq25P@cluster0.akdqfhs.mongodb.net/?retryWrites=true&w=majority'
@@ -20,6 +21,13 @@ db.once("open", ()=> {
 
 const app = express();
 
+
+app.set('view engine', 'html');
+app.engine('html', require('ejs').renderFile);
+app.use(express.static(path.join(__dirname, '\/views')));
+app.get("/admin", (req,res) => {
+    res.render('admin.html')
+})
 
 app.listen(3000, () => {
     console.log('Server open on port 3000');
