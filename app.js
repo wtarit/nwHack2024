@@ -25,6 +25,17 @@ const app = express();
 app.set('view engine', 'html');
 app.engine('html', require('ejs').renderFile);
 app.use(express.static(path.join(__dirname, '\/views')));
+
+
+app.get("/", (req,res) => {
+    res.render('home.html')
+})
+
+
+app.get("/custodian", (req,res) => {
+    res.render('custodian.html')
+})
+
 app.get("/admin", (req,res) => {
     res.render('admin.html')
 })
