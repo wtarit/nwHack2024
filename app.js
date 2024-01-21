@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const Bin = require('./models/bin');
+const Trashlog = require('./models/trashlog')
 var path = require('path'); 
 
 const app = express();
@@ -14,7 +15,7 @@ const config = {
     authRequired: false,
     auth0Logout: true,
     secret: 'a long, randomly-generated string stored in env',
-    baseURL: 'http://localhost:3000',
+    baseURL: 'https://wastewizard.tech/',
     clientID: 'AGHO6yd1otYxYVx7CFYwYEstdQAh3OS5',
     issuerBaseURL: 'https://dev-w6dlnl36kmnodfgx.us.auth0.com'
   }; 
@@ -66,6 +67,14 @@ app.post("/custodian", async (req, res) => {
     // targetBin.lastInteraction = new Date();
     targetBin.lastInteractionType = "fill";
     targetBin.save()
+
+    // write log
+    const trashlog = new Trashlog();
+    trashlog.wasteType = req.body.wasteType
+    trashlog.custodian = "Jaydon Herwiz"
+    trashlog.room = req.body.binname
+    trashlog.date = new Date()
+    trashlog.save()
     res.send({"status":"success"})
 })
 
