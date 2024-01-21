@@ -19,7 +19,7 @@ body {
     flex-direction: row;
     padding: 0 20px;
     height: 100%;
-    margin-top: 50px;
+    margin-top: 0px;
     width: 100%;
     font-family: 'Lexend';
     overflow: visible;
@@ -40,7 +40,7 @@ body {
     border-radius: 10px;
     margin-top: 0.001%;
     width: max-content;
-    height: 75%;
+    height: 910px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -51,6 +51,13 @@ h1 {
 
 caption {
     text-align: left
+}
+
+.waste-button:hover {
+    background-color: #E4EFFF;
+    /* Lighter shade on hover */
+    color: #285E98;
+    /* White text on hover */
 }
 
 .logout button {
