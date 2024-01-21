@@ -47,6 +47,7 @@
         secret:
           "a714bb86d3f74b4e641a4e028da60c9c30d574ea7838ea123ad9f3fbfe9106f2",
       };
+      
       var venue = 0;
       var mapView = 0;
       async function init() {
@@ -54,11 +55,31 @@
         venue = await getVenueMaker(options);
         //Display the default map in the app div.
         mapView = await showVenue(document.getElementById("app"), venue);
-
+        venue.locations.forEach((location) => {
+          // Rooms
+          location.polygons.forEach((polygon) => {
+            if (polygon.center) {
+              mapView.FloatingLabels.add(
+                mapView.currentMap.createCoordinateByXY(
+                  polygon.center.x,
+                  polygon.center.y
+                ),
+                location.name
+              );
+            }
+          });
+          // POIs
+          location.nodes.forEach((node) => {
+            mapView.FloatingLabels.add(node, location.name);
+          });
+        });
+      
         testNavigation();
       }
 
       init();
+
+      
 
       function testNavigation() {
         const queryString = window.location.search;
