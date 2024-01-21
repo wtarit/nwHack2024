@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const moment = require("moment");
 const Bin = require("./models/bin");
 const Trashlog = require("./models/trashlog");
 var path = require("path");
@@ -84,20 +85,34 @@ app.get("/currentstatus", async (req, res) => {
   var hazardous = await Bin.findOne({ wasteType: "hazardous" });
   var anatomical = await Bin.findOne({ wasteType: "anatomical" });
   var sharps = await Bin.findOne({ wasteType: "sharps" });
-  console.log(anatomical);
+  console.log(typeof hazardous.lastInteraction);
+  console.log(hazardous.lastInteraction);
   res.send({
     hazardous_amount: hazardous.currentStatus,
-    hazardous_date: hazardous.lastInteraction,
+    hazardous_date: moment(hazardous.lastInteraction).format(
+      "h:mm a, MMM Do YYYY"
+    ),
     anatomical_amount: anatomical.currentStatus,
-    anatomical_date: anatomical.lastInteraction,
+    anatomical_date: moment(anatomical.lastInteraction).format(
+      "h:mm a, MMM Do YYYY"
+    ),
     sharps_amount: sharps.currentStatus,
-    sharps_date: sharps.lastInteraction,
+    sharps_date: moment(sharps.lastInteraction).format("h:mm a, MMM Do YYYY"),
   });
 });
 
 app.get("/trashlog", async (req, res) => {
   const trashlog = await Trashlog.find();
-  res.send(trashlog);
+  res.send(
+    trashlog.map((t) => {
+      return {
+        "wasteType": t.wasteType,
+        "custodian": t.custodian,
+        "room": t.room,
+        "date": moment(t.date).format("h:mm a, MMM Do YYYY")
+      };
+    })
+  );
 });
 app.post("/emptytrash", async (req, res) => {
   var targetBin = await Bin.findOne({ wasteType: req.body.wasteType });
