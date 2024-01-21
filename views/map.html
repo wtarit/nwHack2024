@@ -19,15 +19,13 @@
         height: 100%;
       }
       #app {
-        height: 100%;
+        height: 90%;
         width: 100%;
         position: relative;
       }
     </style>
     <title>Mappedin Web SDK v5 Getting Started with JSDelivr</title>
-  </head>
-  <body>
-    <div id="app"></div>
+
     <script type="module">
       import {
         getVenue,
@@ -49,9 +47,47 @@
         secret:
           "a714bb86d3f74b4e641a4e028da60c9c30d574ea7838ea123ad9f3fbfe9106f2",
       };
-      getVenueMaker(options).then(async (venue) => {
-        const mapView = await showVenue(document.getElementById("app"), venue);
-      });
+      var venue = 0;
+      var mapView;
+      async function init() {
+        //Wait while the venue is downloaded.
+        venue = await getVenueMaker(options);
+        //Display the default map in the app div.
+        mapView = await showVenue(document.getElementById("app"), venue);
+      }
+
+      init();
+
+      // getVenueMaker(options).then(async (venue) => {
+      //   const mapView = await showVenue(document.getElementById("app"), venue);
+      // });
+
+      function testNavigation() {
+        const startLocation = venue.locations.find(
+          (location) => location.name === "Sharps Waste"
+        );
+        const endLocation = venue.locations.find(
+          (location) => location.name === "Hazardous Pharmaceutical Waste"
+        );
+        console.log(venue)
+        console.log(startLocation)
+        console.log(endLocation)
+
+        const directions = startLocation.directionsTo(endLocation);
+        mapView.Journey.draw(directions, {
+          pathOptions: {
+            color: "blue",
+          },
+        });
+      }
+      document
+        .getElementById("navigation")
+        .addEventListener("click", testNavigation);
     </script>
+  </head>
+  <body>
+    <div id="app"></div>
+
+    <button id="navigation">AB</button>
   </body>
 </html>
