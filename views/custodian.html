@@ -1,15 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Waste Wizards Custodian Page</title>
+    <link rel="stylesheet" href="custodian.css" />
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Waste Wizards Custodian Page</title>
-    <link rel="stylesheet" href="custodian.css">
-</head>
+    <script>
+      function onClick() {
+        const req = {
+          binname: document.getElementById("bin-names").value,
+          wasteType: document.getElementById("wasteType").value,
+        };
+        console.log(req);
+        fetch("/custodian", {
+          method: "POST",
+          body: JSON.stringify(req),
+          headers: {
+            "Content-type": "application/json; charset=UTF-8",
+          },
+        });
+      }
+    </script>
+  </head>
 
-<body>
+  <body>
     <h1>This is the basic cleaner page!</h1>
-</body>
-
+    <select name="bin-names" id="bin-names">
+      <option value="bin1">bin1</option>
+      <option value="bin2">bin2</option>
+      <option value="bin3">bin3</option>
+      <option value="bin4">bin4</option>
+    </select>
+    <select name="wasteType" id="wasteType">
+      <option value="hazardous">Hazardous</option>
+      <option value="anatomical">Anatomical</option>
+      <option value="sharps">Sharps</option>
+    </select>
+    <button onclick="onClick()">Submit</button>
+  </body>
 </html>
