@@ -1,9 +1,5 @@
 body {
     background-color: #E4EFFF;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    display: inline-flex;
 }
 
 .login button {
@@ -12,6 +8,27 @@ body {
     left: 50%;
 }
 
-.bg-shape {
-    position
+.wizard-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.wizard-container img {
+    width: 500px;
+    margin-top: 50px;
+}
+
+.sign-in {
+    background-color: #285E98;
+    top: 50%;
+    left: 50%;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+    display: inline-block;
+    font-size: 24px;
+    cursor: pointer;
 }
