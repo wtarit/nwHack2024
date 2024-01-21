@@ -1,112 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Waste Wizards Admin Page</title>
-  <link rel="stylesheet" href="admin.css" />
-  <script>
-    async function getData() {
-      const currentStatus = await fetch("/currentstatus");
-      const data = await currentStatus.json();
-      document.getElementById("hazardous-amount").innerHTML = data.hazardous_amount
-      document.getElementById("hazardous-date").innerHTML = data.hazardous_date
-      document.getElementById("anatomical-amount").innerHTML = data.anatomical_amount
-      document.getElementById("anatomical-date").innerHTML = data.anatomical_date
-      document.getElementById("sharps-amount").innerHTML = data.sharps_amount
-      document.getElementById("sharps-date").innerHTML = data.sharps_date
-    }
-    getData();
-
-    async function empty(type) {
-      const req = { "wasteType": type }
-      const response = await fetch("/emptytrash", {
-        method: "POST",
-        body: JSON.stringify(req),
-        headers: {
-          "Content-type": "application/json; charset=UTF-8",
-        },
-      })
-      if (response.status == 200) {
-        document.getElementById(`${type}-amount`).innerHTML = 0
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Waste Wizards Admin Page</title>
+    <link rel="stylesheet" href="admin.css" />
+    <script>
+      async function getData() {
+        const currentStatus = await fetch("/currentstatus");
+        const data = await currentStatus.json();
+        document.getElementById("hazardous-amount").innerHTML =
+          data.hazardous_amount;
+        document.getElementById("hazardous-date").innerHTML =
+          data.hazardous_date;
+        document.getElementById("anatomical-amount").innerHTML =
+          data.anatomical_amount;
+        document.getElementById("anatomical-date").innerHTML =
+          data.anatomical_date;
+        document.getElementById("sharps-amount").innerHTML = data.sharps_amount;
+        document.getElementById("sharps-date").innerHTML = data.sharps_date;
       }
-    }
-    function insertrow() {
-      var table = document.getElementById("trash-log");
-      var row = table.insertRow(-1);
-      var cell1 = row.insertCell(0);
-      var cell2 = row.insertCell(1);
-      cell1.innerHTML = "NEW CELL1";
-      cell2.innerHTML = "NEW CELL2";
-    }
-  </script>
-</head>
+      getData();
 
-<body>
-  <div class="admin-container">
-    <section class="sidebar">
-      <h1>Welcome Admin </h1>
-      <div class="logout">
-        <a href="/logout"><button>Logout</button></a>
-      </div>
-    </section>
-    <section class="content">
-      <section class="bin-status">
-        <h2>Large Bin Status</h2>
-        <table>
-          <tr>
-            <th>Waste Type</th>
-            <th>Amount</th>
-            <th>Last Emptied</th>
-            <th>Action</th>
-          </tr>
-          <tr>
-            <td>Hazardous Pharma</td>
-            <td id="hazardous-amount"></td>
-            <td id="hazardous-date"></td>
-            <td>
-              <button class="waste-button" onclick="empty('hazardous')">Empty</button>
-            </td>
-          </tr>
-          <tr>
-            <td>Anatomical</td>
-            <td id="anatomical-amount"></td>
-            <td id="anatomical-date"></td>
-            <td>
-              <button class="waste-button" onclick="empty('anatomical')">Empty</button>
-            </td>
-          </tr>
-          <tr>
-            <td>Sharps</td>
-            <td id="sharps-amount"></td>
-            <td id="sharps-date"></td>
-            <td>
-              <button class="waste-button" onclick="empty('sharps')">Empty</button>
-            </td>
-          </tr>
-        </table>
+      async function empty(type) {
+        const req = { wasteType: type };
+        const response = await fetch("/emptytrash", {
+          method: "POST",
+          body: JSON.stringify(req),
+          headers: {
+            "Content-type": "application/json; charset=UTF-8",
+          },
+        });
+        if (response.status == 200) {
+          document.getElementById(`${type}-amount`).innerHTML = 0;
+        }
+      }
+
+      function insertrow(name, room, waste, time) {
+        var table = document.getElementById("trash-log");
+        var row = table.insertRow(-1);
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+        var cell3 = row.insertCell(2);
+        var cell4 = row.insertCell(3);
+        cell1.innerHTML = name;
+        cell2.innerHTML = room;
+        cell3.innerHTML = waste;
+        cell4.innerHTML = time;
+      }
+
+      async function populateTrashLog() {
+        const trashLog = await fetch("/trashlog");
+        const data = await trashLog.json();
+        console.log(data);
+        console.log(data.length);
+        for (var i = 0; i < data.length; i++) {
+          insertrow(
+            data[i].custodian,
+            data[i].room,
+            data[i].wasteType,
+            data[i].date
+          );
+        }
+      }
+
+      populateTrashLog();
+    </script>
+  </head>
+
+  <body>
+    <div class="admin-container">
+      <section class="sidebar">
+        <h1>Welcome Admin</h1>
+        <div class="logout">
+          <a href="/logout"><button>Logout</button></a>
+        </div>
       </section>
+      <section class="content">
+        <section class="bin-status">
+          <h2>Large Bin Status</h2>
+          <table>
+            <tr>
+              <th>Waste Type</th>
+              <th>Amount</th>
+              <th>Last Emptied</th>
+              <th>Action</th>
+            </tr>
+            <tr>
+              <td>Hazardous Pharma</td>
+              <td id="hazardous-amount"></td>
+              <td id="hazardous-date"></td>
+              <td>
+                <button class="waste-button" onclick="empty('hazardous')">
+                  Empty
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td>Anatomical</td>
+              <td id="anatomical-amount"></td>
+              <td id="anatomical-date"></td>
+              <td>
+                <button class="waste-button" onclick="empty('anatomical')">
+                  Empty
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td>Sharps</td>
+              <td id="sharps-amount"></td>
+              <td id="sharps-date"></td>
+              <td>
+                <button class="waste-button" onclick="empty('sharps')">
+                  Empty
+                </button>
+              </td>
+            </tr>
+          </table>
+        </section>
 
-      <section class="trash-log">
-        <h2>Trash Log</h2>
-        <table id="trash-log">
-          <tr>
-            <th>Custodian</th>
-            <th>Room Number</th>
-            <th>Waste Type</th>
-            <th>Time</th>
-          </tr>
-          <tr>
-            <td>Jaydon Herwiz</td>
-            <td>415</td>
-            <td>Hazardous Phamaceuticals</td>
-            <td>10:30 AM</td>
-          </tr>
-        </table>
+        <section class="trash-log">
+          <h2>Trash Log</h2>
+          <table id="trash-log">
+            <tr>
+              <th>Custodian</th>
+              <th>Room Number</th>
+              <th>Waste Type</th>
+              <th>Time</th>
+            </tr>
+            <tr>
+              <td>Jaydon Herwiz</td>
+              <td>415</td>
+              <td>Hazardous Phamaceuticals</td>
+              <td>10:30 AM</td>
+            </tr>
+          </table>
+        </section>
       </section>
-    </section>
-  </div>
-</body>
-
+    </div>
+  </body>
 </html>
