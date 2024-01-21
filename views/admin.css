@@ -5,6 +5,7 @@
 #2D445E <- facebook dark blue 
 #F9FAFB <- not white white*/
 
+
 body {
     background-color: #E4EFFF;
 }
@@ -28,6 +29,26 @@ body {
     padding: 8px 20px;
     border-radius: 5px;
 }
+
+.bin-status table {
+    width: 100%;
+    table-layout: fixed;
+}
+
+.bin-status table tr {
+    padding: 10px;
+    text-align: left;
+}
+
+.bin-status table th,
+table td {
+    padding: 15px;
+    text-align: center;
+}
+
+
+
+
 
 .trash-log {
     background: #F9FAFB;

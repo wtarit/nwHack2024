@@ -8,12 +8,11 @@ body {
     position: absolute;
     display: flex;
     align-items: center;
-    justify-content: left;
+    justify-content: right;
     flex-direction: row;
     padding: 0 20px;
     height: 75%;
     margin: auto;
-    width: 50%;
 }
 
 .sign-in-container {
@@ -39,6 +38,12 @@ h1 {
     padding: 15px;
     font-family: 'Lexend';
     display: inline-block;
+}
+
+img {
+    height: 400px;
+    width: auto;
+    margin: 200px;
 }
 
 /* colors
