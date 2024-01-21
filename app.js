@@ -2,6 +2,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const Bin = require('./models/bin');
 var path = require('path'); 
+import { getVenue, showVenue, E_SDK_EVENT } from '@mappedin/mappedin-js';
+import '@mappedin/mappedin-js/lib/index.css';
 
 const app = express();
 
@@ -44,6 +46,24 @@ app.use(express.static(path.join(__dirname, '\/views')));
 // auth router attaches /login, /logout, and /callback routes to the baseURL
 app.use(auth(config));
 
+
+
+// async function init() {
+// 	const venueData = await getVenue({
+// 		clientId: '<clientId>',
+// 		clientSecret: '<clientSecret>',
+// 		venue: '<venue>',
+// 	});
+
+// 	const mapView = await showVenue(document.getElementById('mappedin-map'), venueData);
+// 	mapView.FloatingLabels.labelAllLocations();
+// 	mapView.addInteractivePolygonsForAllLocations();
+// 	mapView.on(E_SDK_EVENT.CLICK, ({ polygons }) => {
+// 		console.log(`Polygon with id ${polygons[0].id} clicked!`);
+// 	});
+// }
+// document.addEventListener('DOMContentLoaded', init);
+
 app.get("/", (req,res) => {
     console.log(req.oidc.isAuthenticated());
     res.render('home.html',{isAuthenticated: req.oidc.isAuthenticated()});
@@ -64,6 +84,12 @@ app.post("/custodian", async (req, res) => {
 })
 
 app.get("/admin", (req,res) => {
+
+    if (!req.oidc.isAuthenticated()) {
+
+        res.redirect("/");
+
+    }
     res.render('admin.html')
 })
 
