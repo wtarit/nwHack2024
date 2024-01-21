@@ -36,7 +36,7 @@ body {
     align-items: center;
     flex-direction: column;
     padding: 15px 20px;
-    border-radius: 5px;
+    border-radius: 10px;
     margin-top: 0.001%;
     width: max-content;
     height: 75%;
@@ -65,10 +65,11 @@ caption {
 
 .bin-status {
     background: #F9FAFB;
+    position: static;
     margin-top: 5%;
     margin-left: 3%;
     padding: 8px 15px;
-    border-radius: 5px;
+    border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -101,7 +102,7 @@ caption {
     margin-top: 3%;
     margin-left: 3%;
     padding: 10px 20px;
-    border-radius: 5px;
+    border-radius: 10px;
     margin-bottom: 40px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }

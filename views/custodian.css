@@ -39,7 +39,7 @@ body {
     align-items: center;
     flex-direction: column;
     padding: 15px 20px;
-    border-radius: 5px;
+    border-radius: 10px;
     margin-top: 0.001%;
     width: max-content;
     height: 75%;
@@ -94,7 +94,7 @@ body {
     height: 70%;
     border: none;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
+    border-radius: 10px;
 }
 
 .logout button {
@@ -106,6 +106,7 @@ body {
     padding: 10px 10px;
     font-family: 'Lexend';
     display: inline-block;
+    width: max-content;
 }
 
 /* Add additional styling as needed for responsiveness */
