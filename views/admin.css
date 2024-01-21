@@ -40,22 +40,43 @@ body {
     text-align: left;
 }
 
-.bin-status table th,
-table td {
+.bin-status table th {
     padding: 15px;
     text-align: center;
 }
 
-
-
+.bin-status table td {
+    padding: 15px;
+    text-align: left;
+}
 
 
 .trash-log {
     background: #F9FAFB;
     margin-top: 3%;
     margin-left: 3%;
-    padding: 8px 20px;
+    padding: 10px 20px;
     border-radius: 5px;
+}
+
+.trash-log table {
+    width: 100%;
+    table-layout: fixed;
+}
+
+.trash-log table tr {
+    padding: 15px 15px;
+    text-align: left;
+}
+
+.trash-log table th {
+    padding: 15px 15px;
+    text-align: center;
+}
+
+.trash-log table td {
+    padding: 15px;
+    text-align: left;
 }
 
 .waste-button {
