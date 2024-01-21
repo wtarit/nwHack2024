@@ -10,6 +10,19 @@ body {
     background-color: #E4EFFF;
 }
 
+.big-container {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 20px;
+    height: 100%;
+    margin-top: 50px;
+    width: 100%;
+    font-family: 'Lexend';
+    overflow: visible;
+}
 
 .admin-container {
     position: absolute;
@@ -137,4 +150,9 @@ caption {
     padding: 10px 10px;
     font-family: 'Lexend';
     display: inline-block;
+}
+
+.bar-chart {
+    width: 500px;
+    height: auto;
 }
