@@ -2,8 +2,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const Bin = require('./models/bin');
 var path = require('path'); 
-import { getVenue, showVenue, E_SDK_EVENT } from '@mappedin/mappedin-js';
-import '@mappedin/mappedin-js/lib/index.css';
+// import { getVenue, showVenue, E_SDK_EVENT } from '@mappedin/mappedin-js';
+// import '@mappedin/mappedin-js/lib/index.css';
 
 const app = express();
 
@@ -77,7 +77,7 @@ app.get("/custodian", (req,res) => {
 app.post("/custodian", async (req, res) => {
     var targetBin = await Bin.findOne({"wasteType":req.body.wasteType})
     targetBin.currentStatus += 25
-    targetBin.lastInteraction = new Date();
+    // targetBin.lastInteraction = new Date();
     targetBin.lastInteractionType = "fill";
     targetBin.save()
     res.send({"status":"success"})
@@ -91,6 +91,32 @@ app.get("/admin", (req,res) => {
 
     }
     res.render('admin.html')
+})
+
+app.get("/currentstatus", async (req,res) => {
+    const allbin = await Bin.find()
+    console.log(typeof(allbin))
+    var hazardous = await Bin.findOne({"wasteType":"hazardous"})
+    var anatomical = await Bin.findOne({"wasteType":"anatomical"})
+    var sharps = await Bin.findOne({"wasteType":"sharps"})
+    console.log(anatomical)
+    res.send({
+        "hazardous_amount":hazardous.currentStatus,
+        "hazardous_date":hazardous.lastInteraction,
+        "anatomical_amount":anatomical.currentStatus,
+        "anatomical_date":anatomical.lastInteraction,
+        "sharps_amount":sharps.currentStatus,
+        "sharps_date":sharps.lastInteraction
+    })
+})
+
+app.post("/emptytrash", async (req, res) => {
+    var targetBin = await Bin.findOne({"wasteType":req.body.wasteType})
+    targetBin.currentStatus = 0
+    targetBin.lastInteraction = new Date();
+    targetBin.lastInteractionType = "empty";
+    targetBin.save()
+    res.send({"status":"success"})
 })
 
 app.post("/addbin", (req, res) => {
