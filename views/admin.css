@@ -40,6 +40,7 @@ body {
     margin-top: 0.001%;
     width: max-content;
     height: 75%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
@@ -59,7 +60,7 @@ caption {
     border-radius: 5px;
     padding: 10px 10px;
     font-family: 'Lexend';
-    display: inline-block;
+    width: max-content;
 }
 
 .bin-status {
@@ -68,6 +69,7 @@ caption {
     margin-left: 3%;
     padding: 8px 15px;
     border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .bin-status table {
@@ -101,6 +103,7 @@ caption {
     padding: 10px 20px;
     border-radius: 5px;
     margin-bottom: 40px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .trash-log table {
