@@ -10,36 +10,62 @@
     async function getData() {
       const currentStatus = await fetch("/currentstatus");
       const data = await currentStatus.json();
-      document.getElementById("hazardous-amount").innerHTML = data.hazardous_amount
-      document.getElementById("hazardous-date").innerHTML = data.hazardous_date
-      document.getElementById("anatomical-amount").innerHTML = data.anatomical_amount
-      document.getElementById("anatomical-date").innerHTML = data.anatomical_date
-      document.getElementById("sharps-amount").innerHTML = data.sharps_amount
-      document.getElementById("sharps-date").innerHTML = data.sharps_date
+      document.getElementById("hazardous-amount").innerHTML =
+        data.hazardous_amount;
+      document.getElementById("hazardous-date").innerHTML =
+        data.hazardous_date;
+      document.getElementById("anatomical-amount").innerHTML =
+        data.anatomical_amount;
+      document.getElementById("anatomical-date").innerHTML =
+        data.anatomical_date;
+      document.getElementById("sharps-amount").innerHTML = data.sharps_amount;
+      document.getElementById("sharps-date").innerHTML = data.sharps_date;
     }
     getData();
 
     async function empty(type) {
-      const req = { "wasteType": type }
+      const req = { wasteType: type };
       const response = await fetch("/emptytrash", {
         method: "POST",
         body: JSON.stringify(req),
         headers: {
           "Content-type": "application/json; charset=UTF-8",
         },
-      })
+      });
       if (response.status == 200) {
-        document.getElementById(`${type}-amount`).innerHTML = 0
+        document.getElementById(`${type}-amount`).innerHTML = 0;
       }
     }
-    function insertrow() {
+
+    function insertrow(name, room, waste, time) {
       var table = document.getElementById("trash-log");
       var row = table.insertRow(-1);
       var cell1 = row.insertCell(0);
       var cell2 = row.insertCell(1);
-      cell1.innerHTML = "NEW CELL1";
-      cell2.innerHTML = "NEW CELL2";
+      var cell3 = row.insertCell(2);
+      var cell4 = row.insertCell(3);
+      cell1.innerHTML = name;
+      cell2.innerHTML = room;
+      cell3.innerHTML = waste;
+      cell4.innerHTML = time;
     }
+
+    async function populateTrashLog() {
+      const trashLog = await fetch("/trashlog");
+      const data = await trashLog.json();
+      console.log(data);
+      console.log(data.length);
+      for (var i = 0; i < data.length; i++) {
+        insertrow(
+          data[i].custodian,
+          data[i].room,
+          data[i].wasteType,
+          data[i].date
+        );
+      }
+    }
+
+    populateTrashLog();
   </script>
 </head>
 
@@ -118,7 +144,6 @@
           </tbody>
         </table>
       </section>
-    </section>
   </div>
 </body>
 
