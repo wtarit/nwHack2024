@@ -19,7 +19,7 @@
         height: 100%;
       }
       #app {
-        height: 90%;
+        height: 100%;
         width: 100%;
         position: relative;
       }
@@ -48,30 +48,28 @@
           "a714bb86d3f74b4e641a4e028da60c9c30d574ea7838ea123ad9f3fbfe9106f2",
       };
       var venue = 0;
-      var mapView;
+      var mapView = 0;
       async function init() {
         //Wait while the venue is downloaded.
         venue = await getVenueMaker(options);
         //Display the default map in the app div.
         mapView = await showVenue(document.getElementById("app"), venue);
+
+        testNavigation();
       }
 
       init();
 
-      // getVenueMaker(options).then(async (venue) => {
-      //   const mapView = await showVenue(document.getElementById("app"), venue);
-      // });
-
       function testNavigation() {
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        console.log(urlParams.get('start'), urlParams.get('end'))
         const startLocation = venue.locations.find(
-          (location) => location.name === "Sharps Waste"
+          (location) => location.name === urlParams.get('start')
         );
         const endLocation = venue.locations.find(
-          (location) => location.name === "Hazardous Pharmaceutical Waste"
+          (location) => location.name === urlParams.get('end')
         );
-        console.log(venue)
-        console.log(startLocation)
-        console.log(endLocation)
 
         const directions = startLocation.directionsTo(endLocation);
         mapView.Journey.draw(directions, {
@@ -80,14 +78,10 @@
           },
         });
       }
-      document
-        .getElementById("navigation")
-        .addEventListener("click", testNavigation);
+
     </script>
   </head>
   <body>
     <div id="app"></div>
-
-    <button id="navigation">AB</button>
   </body>
 </html>

@@ -6,29 +6,18 @@
     <title>Waste Wizards Custodian Page</title>
     <link rel="stylesheet" href="custodian.css" />
 
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-      }
-      html,
-      body {
-        width: 100%;
-        height: 100%;
-      }
-      #map-container {
-        height: 50%;
-        width: 50%;
-      }
-    </style>
-    
     <script>
+      const mapping = {
+        hazardous: "Hazardous Pharmaceutical Waste",
+        anatomical: "Biohazardous Waste",
+        sharps: "Sharps Waste",
+      };
+
       function onClick() {
         const req = {
           binname: document.getElementById("bin-names").value,
           wasteType: document.getElementById("wasteType").value,
         };
-        console.log(req);
         fetch("/custodian", {
           method: "POST",
           body: JSON.stringify(req),
@@ -36,83 +25,38 @@
             "Content-type": "application/json; charset=UTF-8",
           },
         });
+        const mapframe = document.getElementById("map-container");
+        console.log(mapframe);
+        mapframe.src = `map.html?start=${
+          document.getElementById("bin-names").value
+        }&end=${mapping[document.getElementById("wasteType").value]}`;
       }
-    </script>
-
-    <script type="module">
-      import {
-        getVenue,
-        showVenue,
-        getVenueMaker,
-      } from "https://cdn.jsdelivr.net/npm/@mappedin/mappedin-js@latest/lib/esm/renderer/index.js";
-
-      const options = {
-        mapId: "65ac2cedca641a9a1399dc0d",
-        key: "65ac8c7f04c23e7916b1d100",
-        secret:
-          "a714bb86d3f74b4e641a4e028da60c9c30d574ea7838ea123ad9f3fbfe9106f2",
-      };
-      var venue = 0;
-      var mapView;
-      async function init() {
-        //Wait while the venue is downloaded.
-        venue = await getVenueMaker(options);
-        //Display the default map in the app div.
-        mapView = await showVenue(document.getElementById("app"), venue);
-      }
-
-      init();
-
-      // getVenueMaker(options).then(async (venue) => {
-      //   const mapView = await showVenue(document.getElementById("app"), venue);
-      // });
-      const mapping = {
-        "hazardous":"Hazardous Pharmaceutical Waste",
-        "anatomical":"Biohazardous Waste",
-        "sharps":"Sharps Waste"
-      }
-      function testNavigation() {
-        console.log(document.getElementById("bin-names").value)
-        const startLocation = venue.locations.find(
-          (location) => location.name === document.getElementById("bin-names").value
-        );
-        const endLocation = venue.locations.find(
-          (location) => location.name === mapping[document.getElementById("wasteType").value]
-        );
-
-        const directions = startLocation.directionsTo(endLocation);
-        mapView.Journey.draw(directions, {
-          pathOptions: {
-            color: "blue",
-          },
-        });
-      }
-      document
-        .getElementById("submit")
-        .addEventListener("click", testNavigation);
     </script>
   </head>
 
   <body>
-    <h1>This is the basic cleaner page!</h1>
-    <select name="bin-names" id="bin-names">
-      <option disabled selected value>-- select an option --</option>
-      <option value="Room 201">Room 201</option>
-      <option value="Room 211">Room 211</option>
-      <option value="Room 250">Room 250</option>
-      <option value="Room 257">Room 257</option>
-    </select>
+    <div class="form-card">
+      <div id="user-image"></div>
+      <div id="user-greeting">Welcome, User!</div>
 
-    <select name="wasteType" id="wasteType">
-      <option disabled selected value>-- select an option --</option>
-      <option value="hazardous">Hazardous</option>
-      <option value="anatomical">Anatomical</option>
-      <option value="sharps">Sharps</option>
-    </select>
-    <button onclick="onClick()" id="submit">Submit</button>
+      <select name="bin-names" id="bin-names">
+        <option disabled selected value>-- select a room --</option>
+        <option value="Room 201">Room 201</option>
+        <option value="Room 211">Room 211</option>
+        <option value="Room 250">Room 250</option>
+        <option value="Room 257">Room 257</option>
+      </select>
 
-    <iframe id="map-container"src="./map.html" frameborder="0"></iframe>
-      
-    
+      <select name="wasteType" id="wasteType">
+        <option disabled selected value>-- select waste type --</option>
+        <option value="hazardous">Hazardous</option>
+        <option value="anatomical">Anatomical</option>
+        <option value="sharps">Sharps</option>
+      </select>
+
+      <button onclick="onClick()" id="submit">Submit</button>
+    </div>
+
+    <iframe id="map-container" src="./map.html" frameborder="0"></iframe>
   </body>
 </html>
