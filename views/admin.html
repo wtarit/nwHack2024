@@ -54,56 +54,68 @@
     </section>
     <section class="content">
       <section class="bin-status">
-        <h2>Large Bin Status</h2>
         <table>
-          <tr>
-            <th>Waste Type</th>
-            <th>Amount</th>
-            <th>Last Emptied</th>
-            <th>Action</th>
-          </tr>
-          <tr>
-            <td>Hazardous Pharma</td>
-            <td id="hazardous-amount"></td>
-            <td id="hazardous-date"></td>
-            <td>
-              <button class="waste-button" onclick="empty('hazardous')">Empty</button>
-            </td>
-          </tr>
-          <tr>
-            <td>Anatomical</td>
-            <td id="anatomical-amount"></td>
-            <td id="anatomical-date"></td>
-            <td>
-              <button class="waste-button" onclick="empty('anatomical')">Empty</button>
-            </td>
-          </tr>
-          <tr>
-            <td>Sharps</td>
-            <td id="sharps-amount"></td>
-            <td id="sharps-date"></td>
-            <td>
-              <button class="waste-button" onclick="empty('sharps')">Empty</button>
-            </td>
-          </tr>
+          <caption>
+            <h2>Large Bin Status</h2>
+          </caption>
+          <thead>
+            <tr>
+              <th>Waste Type</th>
+              <th>Amount</th>
+              <th>Last Emptied</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Hazardous Pharma</td>
+              <td id="hazardous-amount"></td>
+              <td id="hazardous-date"></td>
+              <td>
+                <button class="waste-button" onclick="empty('hazardous')">Empty</button>
+              </td>
+            </tr>
+            <tr>
+              <td>Anatomical</td>
+              <td id="anatomical-amount"></td>
+              <td id="anatomical-date"></td>
+              <td>
+                <button class="waste-button" onclick="empty('anatomical')">Empty</button>
+              </td>
+            </tr>
+            <tr>
+              <td>Sharps</td>
+              <td id="sharps-amount"></td>
+              <td id="sharps-date"></td>
+              <td>
+                <button class="waste-button" onclick="empty('sharps')">Empty</button>
+              </td>
+            </tr>
+          </tbody>
         </table>
       </section>
 
       <section class="trash-log">
-        <h2>Trash Log</h2>
         <table id="trash-log">
-          <tr>
-            <th>Custodian</th>
-            <th>Room Number</th>
-            <th>Waste Type</th>
-            <th>Time</th>
-          </tr>
-          <tr>
-            <td>Jaydon Herwiz</td>
-            <td>415</td>
-            <td>Hazardous Phamaceuticals</td>
-            <td>10:30 AM</td>
-          </tr>
+          <caption>
+            <h2>Trash Log</h2>
+          </caption>
+          <thead>
+            <tr>
+              <th>Custodian</th>
+              <th>Room Number</th>
+              <th>Waste Type</th>
+              <th>Time</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Jaydon Herwiz</td>
+              <td>415</td>
+              <td>Hazardous Phamaceuticals</td>
+              <td>10:30 AM</td>
+            </tr>
+          </tbody>
         </table>
       </section>
     </section>

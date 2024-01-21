@@ -19,7 +19,7 @@ body {
     flex-direction: row;
     padding: 0 20px;
     height: 100%;
-    margin-top: 20px;
+    margin-top: 50px;
     width: 100%;
     font-family: 'Lexend';
 }
@@ -37,7 +37,7 @@ body {
     flex-direction: column;
     padding: 15px 20px;
     border-radius: 5px;
-    margin-top: -148px;
+    margin-top: 0.001%;
     width: max-content;
     height: 75%;
 }
@@ -45,6 +45,10 @@ body {
 h1 {
     font-family: 'Lexend', sans-serif;
     margin-top: -10px;
+}
+
+caption {
+    text-align: left
 }
 
 .logout button {
@@ -96,6 +100,7 @@ h1 {
     margin-left: 3%;
     padding: 10px 20px;
     border-radius: 5px;
+    margin-bottom: 40px;
 }
 
 .trash-log table {
