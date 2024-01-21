@@ -32,12 +32,20 @@ h1 {
 
 .login button {
     background-color: #285E98;
-    color: white;
+    color: #F9FAFB;
     border: none;
+    margin: 3%;
     border-radius: 5px;
-    padding: 15px;
+    padding: 10px 10px;
     font-family: 'Lexend';
     display: inline-block;
+    width: max-content;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.login button:hover {
+    background-color:#1F2937;  /* Lighter shade on hover */
+    color: #F9FAFB;  /* White text on hover */
 }
 
 img {
