@@ -14,7 +14,7 @@ const config = {
     authRequired: false,
     auth0Logout: true,
     secret: 'a long, randomly-generated string stored in env',
-    baseURL: 'http://localhost:3000',
+    baseURL: 'https://wastewizard.tech/',
     clientID: 'AGHO6yd1otYxYVx7CFYwYEstdQAh3OS5',
     issuerBaseURL: 'https://dev-w6dlnl36kmnodfgx.us.auth0.com'
   }; 
