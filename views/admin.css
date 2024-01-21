@@ -10,6 +10,7 @@ body {
     background-color: #E4EFFF;
 }
 
+
 .admin-container {
     position: absolute;
     display: flex;
@@ -17,8 +18,8 @@ body {
     justify-content: center;
     flex-direction: row;
     padding: 0 20px;
-    height: 75%;
-    margin: auto;
+    height: 100%;
+    margin-top: 20px;
     width: 100%;
     font-family: 'Lexend';
 }
@@ -49,7 +50,6 @@ body {
     padding: 15px;
     text-align: left;
 }
-
 
 .trash-log {
     background: #F9FAFB;
