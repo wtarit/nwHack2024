@@ -56,6 +56,17 @@ body {
     border: none;
   }
 
+  .logout button {
+    background-color: #285E98;
+    color: white;
+    border: none;
+    margin: 3%;
+    border-radius: 5px;
+    padding: 10px 10px;
+    font-family: 'Lexend';
+    display: inline-block;
+}
+
   /* Add additional styling as needed for responsiveness */
 
   @media (max-width: 768px) {
