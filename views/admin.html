@@ -45,69 +45,71 @@
 
 <body>
 
-  <section class="sidebar">
-    <h1>Welcome Admin</h1>
-  </section>
-  <section class="content">
-    <section class="bin-status">
-        <div class="logout">
-            <a href="/logout"><button>Logout</button></a>
-        </div>
-      <h2>Large Bin Status</h2>
-      <table>
-        <tr>
-          <th>Waste Type</th>
-          <th>Amount</th>
-          <th>Last Emptied</th>
-          <th>Action</th>
-        </tr>
-        <tr>
-          <td>Hazardous Pharmaceuticals</td>
-          <td id="hazardous-amount"></td>
-          <td id="hazardous-date"></td>
-          <td>
-            <button onclick="empty('hazardous')">Empty</button>
-          </td>
-        </tr>
-        <tr>
-          <td>Anatomical</td>
-          <td id="anatomical-amount"></td>
-          <td id="anatomical-date"></td>
-          <td>
-            <button onclick="empty('anatomical')">Empty</button>
-          </td>
-        </tr>
-        <tr>
-          <td>Sharps</td>
-          <td id="sharps-amount"></td>
-          <td id="sharps-date"></td>
-          <td>
-            <button onclick="empty('sharps')">Empty</button>
-          </td>
-        </tr>
-      </table>
+  <div class="admin-container">
+    <section class="sidebar">
+      <h1>Welcome Admin </h1>
     </section>
+    <section class="content">
+      <div class="logout">
+        <a href="/logout"><button>Logout</button></a>
+      </div>
+      <section class="bin-status">
+        <h2>Large Bin Status</h2>
+        <table>
+          <tr>
+            <th>Waste Type</th>
+            <th>Amount</th>
+            <th>Last Emptied</th>
+            <th>Action</th>
+          </tr>
+          <tr>
+            <td>Hazardous Pharmaceuticals</td>
+            <td id="hazardous-amount"></td>
+            <td id="hazardous-date"></td>
+            <td>
+              <button class="waste-button" onclick="empty('hazardous')">Empty</button>
+            </td>
+          </tr>
+          <tr>
+            <td>Anatomical</td>
+            <td id="anatomical-amount"></td>
+            <td id="anatomical-date"></td>
+            <td>
+              <button class="waste-button" onclick="empty('anatomical')">Empty</button>
+            </td>
+          </tr>
+          <tr>
+            <td>Sharps</td>
+            <td id="sharps-amount"></td>
+            <td id="sharps-date"></td>
+            <td>
+              <button class="waste-button" onclick="empty('sharps')">Empty</button>
+            </td>
+          </tr>
+        </table>
+      </section>
 
-    <section class="trash-log">
-      <h2>Trash Log</h2>
-      <table id="trash-log">
-        <tr>
-          <th>Custodian</th>
-          <th>Room Number</th>
-          <th>Waste Type</th>
-          <th>Bin Number</th>
-          <th>Time</th>
-        </tr>
-        <tr>
-          <td>Jaydon Herwiz</td>
-          <td>415</td>
-          <td>Hazardous Phamaceuticals</td>
-          <td>1</td>
-          <td>10:30</td>
-        </tr>
-      </table>
+      <section class="trash-log">
+        <h2>Trash Log</h2>
+        <table id="trash-log">
+          <tr>
+            <th>Custodian</th>
+            <th>Room Number</th>
+            <th>Waste Type</th>
+            <th>Bin Number</th>
+            <th>Time</th>
+          </tr>
+          <tr>
+            <td>Jaydon Herwiz</td>
+            <td>415</td>
+            <td>Hazardous Phamaceuticals</td>
+            <td>1</td>
+            <td>10:30</td>
+          </tr>
+        </table>
+      </section>
     </section>
-  </section>
+  </div>
 </body>
 
 </html>

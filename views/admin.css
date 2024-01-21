@@ -1,14 +1,74 @@
 @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap');
 
-.sidebar {
-    float: left;
-    width: 300px;
-    height: 800px;
-    border: 1px solid #000
+/* colors
+ #1F2937 <- dark blue
+#2D445E <- facebook dark blue 
+#F9FAFB <- not white white*/
+
+body {
+    background-color: #E4EFFF;
 }
 
-.content {
-    float: inline-start;
-    width: 640px;
+.admin-container {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    padding: 0 20px;
+    height: 75%;
+    margin: auto;
+    width: 100%;
+    font-family: 'Lexend';
+}
+
+.bin-status {
+    background: #F9FAFB;
+    margin-left: 3%;
+    padding: 8px 20px;
+    border-radius: 5px;
+}
+
+.trash-log {
+    background: #F9FAFB;
+    margin-top: 3%;
+    margin-left: 3%;
+    padding: 8px 20px;
+    border-radius: 5px;
+}
+
+.waste-button {
+    background-color: #285E98;
+    color: white;
+    border: none;
+    margin: 3%;
+    border-radius: 5px;
+    padding: 10px 10px;
+    font-family: 'Lexend';
+    display: inline-block;
+}
+
+.sidebar {
+    background-color: #1F2937;
+    color: #F9FAFB;
+    padding: 20px 20px;
+    border-radius: 5px;
+    width: max-content;
+    height: 100%
+}
+
+
+h1 {
     font-family: 'Lexend', sans-serif;
+}
+
+.logout button {
+    background-color: #285E98;
+    color: white;
+    border: none;
+    margin: 3%;
+    border-radius: 5px;
+    padding: 10px 10px;
+    font-family: 'Lexend';
+    display: inline-block;
 }
