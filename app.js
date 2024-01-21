@@ -47,10 +47,14 @@ app.use(auth(config));
 
 
 app.get("/", (req,res) => {
-    console.log(req.oidc.isAuthenticated());
+    if(req.oidc.isAuthenticated()){
+        res.redirect("/custodian");
+        return
+    }
     res.render('home.html',{isAuthenticated: req.oidc.isAuthenticated()});
+    
+    
 })
-
 
 app.get("/custodian", (req,res) => {
     res.render('custodian.html')
@@ -68,11 +72,9 @@ app.post("/custodian", async (req, res) => {
 app.get("/admin", (req,res) => {
 
     if (!req.oidc.isAuthenticated()) {
-
         res.redirect("/");
-
-    }
-    res.render('admin.html')
+    } 
+    res.render("admin.html")
 })
 
 app.get("/currentstatus", async (req,res) => {
