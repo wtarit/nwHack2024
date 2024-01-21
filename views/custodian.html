@@ -16,10 +16,9 @@
         width: 100%;
         height: 100%;
       }
-      #app {
-        height: 100%;
-        width: 100%;
-        position: relative;
+      #map-container {
+        height: 50%;
+        width: 50%;
       }
     </style>
     
@@ -111,6 +110,9 @@
       <option value="sharps">Sharps</option>
     </select>
     <button onclick="onClick()" id="submit">Submit</button>
-    <div id="app"></div>
+
+    <iframe id="map-container"src="./map.html" frameborder="0"></iframe>
+      
+    
   </body>
 </html>
