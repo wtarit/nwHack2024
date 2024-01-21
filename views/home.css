@@ -2,33 +2,39 @@ body {
     background-color: #E4EFFF;
 }
 
-.login button {
+.container {
     position: absolute;
-    top: 50%;
-    left: 50%;
-}
-
-.wizard-container {
     display: flex;
-    flex-direction: row;
     align-items: center;
+    justify-content: left;
+    flex-direction: row;
+    padding: 0 20px;
+    height: 75%;
+    margin: auto;
+    width: 50%;
 }
 
-.wizard-container img {
-    width: 500px;
-    margin-top: 50px;
+.sign-in-container {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 20px;
+    height: 75%;
 }
 
-.sign-in {
+h1 {
+    font-size: 48px;
+    font-family: 'Verdana'
+}
+
+.login button {
     background-color: #285E98;
-    top: 50%;
-    left: 50%;
     color: white;
     border: none;
     border-radius: 5px;
-    padding: 10px;
-    text-align: center;
-    display: inline-block;
-    font-size: 24px;
-    cursor: pointer;
+    padding: 15px;
+    font-family: 'Verdana';
+    display: inline-block
 }
