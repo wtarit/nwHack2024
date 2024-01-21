@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/@mappedin/mappedin-js@latest/lib/mappedin.css"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+      }
+      #app {
+        height: 100%;
+        width: 100%;
+        position: relative;
+      }
+    </style>
+    <title>Mappedin Web SDK v5 Getting Started with JSDelivr</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module">
+      import {
+        getVenue,
+        showVenue,
+        getVenueMaker,
+      } from "https://cdn.jsdelivr.net/npm/@mappedin/mappedin-js@latest/lib/esm/renderer/index.js";
+
+      // See Trial API key Terms and Conditions
+      // https://developer.mappedin.com/guides/api-keys
+      //   const options = {
+      //     venue: "mappedin-demo-mall",
+      //     clientId: "5eab30aa91b055001a68e996",
+      //     clientSecret: "RJyRXKcryCMy4erZqqCbuB1NbR66QTGNXVE0x3Pg6oCIlUR1"
+      //   };
+
+      const options = {
+        mapId: "65ac2cedca641a9a1399dc0d",
+        key: "65ac8c7f04c23e7916b1d100",
+        secret:
+          "a714bb86d3f74b4e641a4e028da60c9c30d574ea7838ea123ad9f3fbfe9106f2",
+      };
+      getVenueMaker(options).then(async (venue) => {
+        const mapView = await showVenue(document.getElementById("app"), venue);
+      });
+    </script>
+  </body>
+</html>

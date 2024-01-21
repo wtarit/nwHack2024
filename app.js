@@ -128,6 +128,11 @@ app.post("/addbin", (req, res) => {
     res.send({"status":"success"})
 })
 
+app.get("/map", (req,res) => {
+    res.render('map.html')
+})
+
+
 app.listen(3000, () => {
     console.log('Server open on port 3000');
 
