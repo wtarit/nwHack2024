@@ -21,8 +21,7 @@ const config = {
   issuerBaseURL: "https://dev-w6dlnl36kmnodfgx.us.auth0.com",
 };
 
-const dbURL =
-  "mongodb+srv://wtarit:PsdByICI2OqOq25P@cluster0.akdqfhs.mongodb.net/?retryWrites=true&w=majority";
+const dbURL = process.env.DBURL;
 
 mongoose.connect(dbURL, {
   useNewUrlParser: true,
@@ -81,12 +80,9 @@ app.get("/admin", (req, res) => {
 
 app.get("/currentstatus", async (req, res) => {
   const allbin = await Bin.find();
-  console.log(typeof allbin);
   var hazardous = await Bin.findOne({ wasteType: "hazardous" });
   var anatomical = await Bin.findOne({ wasteType: "anatomical" });
   var sharps = await Bin.findOne({ wasteType: "sharps" });
-  console.log(typeof hazardous.lastInteraction);
-  console.log(hazardous.lastInteraction);
   res.send({
     hazardous_amount: hazardous.currentStatus,
     hazardous_date: moment(hazardous.lastInteraction).format(
