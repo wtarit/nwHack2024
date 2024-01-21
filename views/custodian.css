@@ -3,9 +3,36 @@ body {
     padding: 0;
     display: flex;
     height: 100vh;
-  }
+}
 
-  .form-card {
+.custodian-container {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    padding: 0 20px;
+    height: 100%;
+    margin-top: 50px;
+    width: 100%;
+    font-family: 'Lexend';
+}
+
+
+.sidebar {
+    background-color: #1F2937;
+    color: #F9FAFB;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 15px 20px;
+    border-radius: 5px;
+    margin-top: 0.001%;
+    width: max-content;
+    height: 75%;
+}
+
+.form-card {
     flex: 1;
     max-width: 50%;
     height: 100%;
@@ -16,9 +43,9 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
+}
 
-  #user-image {
+#user-image {
     width: 80px;
     height: 80px;
     border-radius: 50%;
@@ -26,39 +53,39 @@ body {
     /* Add your user image URL here */
     background-image: url('path/to/user-image.jpg');
     background-size: cover;
-  }
+}
 
-  #user-greeting {
+#user-greeting {
     font-size: 16px;
     margin-bottom: 10px;
-  }
+}
 
-  #bin-names,
-  #wasteType,
-  #submit {
+#bin-names,
+#wasteType,
+#submit {
     width: 100%;
     padding: 10px;
     margin-bottom: 10px;
-    border: 1px solid #ddd;
+    border: 1px solid #F9FAFB;
     border-radius: 5px;
-  }
+}
 
-  #submit {
-    background-color: #4CAF50;
-    color: white;
+#submit {
+    background-color: #1F2937;
+    color: #F9FAFB;
     cursor: pointer;
-  }
+}
 
-  #map-container {
+#map-container {
     flex: 1;
     max-width: 50%;
     height: 100%;
     border: none;
-  }
+}
 
-  .logout button {
+.logout button {
     background-color: #285E98;
-    color: white;
+    color: #F9FAFB;
     border: none;
     margin: 3%;
     border-radius: 5px;
@@ -67,15 +94,15 @@ body {
     display: inline-block;
 }
 
-  /* Add additional styling as needed for responsiveness */
+/* Add additional styling as needed for responsiveness */
 
-  @media (max-width: 768px) {
+@media (max-width: 768px) {
     body {
-      flex-direction: column;
+        flex-direction: column;
     }
 
     .form-card,
     #map-container {
-      max-width: 100%;
+        max-width: 100%;
     }
-  }
+}

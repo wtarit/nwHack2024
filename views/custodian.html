@@ -35,32 +35,36 @@
 </head>
 
 <body>
-  <div class="form-card">
-    <div id="user-image"></div>
-    <div id="user-greeting">Welcome, User!</div>
+  <div class="custodian-container">
+    <section class="sidebar">
+      <div id="user-image"></div>
+      <div id="user-greeting">Welcome, User!</div>
+      <div class="logout">
+        <a href="/logout"><button>Logout</button></a>
+      </div>
+    </section>
 
-    <select name="bin-names" id="bin-names">
-      <option disabled selected value>-- select a room --</option>
-      <option value="Room 201">Room 201</option>
-      <option value="Room 211">Room 211</option>
-      <option value="Room 250">Room 250</option>
-      <option value="Room 257">Room 257</option>
-    </select>
+    <div class="form-card">
+      <select name="bin-names" id="bin-names">
+        <option disabled selected value>-- select a room --</option>
+        <option value="Room 201">Room 201</option>
+        <option value="Room 211">Room 211</option>
+        <option value="Room 250">Room 250</option>
+        <option value="Room 257">Room 257</option>
+      </select>
 
-    <select name="wasteType" id="wasteType">
-      <option disabled selected value>-- select waste type --</option>
-      <option value="hazardous">Hazardous</option>
-      <option value="anatomical">Anatomical</option>
-      <option value="sharps">Sharps</option>
-    </select>
+      <select name="wasteType" id="wasteType">
+        <option disabled selected value>-- select waste type --</option>
+        <option value="hazardous">Hazardous</option>
+        <option value="anatomical">Anatomical</option>
+        <option value="sharps">Sharps</option>
+      </select>
 
-    <button onclick="onClick()" id="submit">Submit</button>
-    <div class="logout">
-      <a href="/logout"><button>Logout</button></a>
+      <button onclick="onClick()" id="submit">Submit</button>
     </div>
-  </div>
 
-  <iframe id="map-container" src="./map.html" frameborder="0"></iframe>
+    <iframe id="map-container" src="./map.html" frameborder="0"></iframe>
+  </div>
 </body>
 
 </html>
