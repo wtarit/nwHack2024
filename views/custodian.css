@@ -111,8 +111,10 @@ body {
 }
 
 .logout button:hover {
-    background-color: #E4EFFF;  /* Lighter shade on hover */
-    color: #285E98;  /* White text on hover */
+    background-color: #E4EFFF;
+    /* Lighter shade on hover */
+    color: #285E98;
+    /* White text on hover */
 }
 
 /* Add additional styling as needed for responsiveness */

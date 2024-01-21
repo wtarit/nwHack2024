@@ -74,6 +74,13 @@ caption {
     width: max-content;
 }
 
+.logout button:hover {
+    background-color: #E4EFFF;
+    /* Lighter shade on hover */
+    color: #285E98;
+    /* White text on hover */
+}
+
 .bin-status {
     background: #F9FAFB;
     position: static;
