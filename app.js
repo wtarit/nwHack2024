@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const Bin = require('./models/bin');
+const Trashlog = require('./models/trashlog')
 var path = require('path'); 
 
 const app = express();
@@ -66,6 +67,14 @@ app.post("/custodian", async (req, res) => {
     // targetBin.lastInteraction = new Date();
     targetBin.lastInteractionType = "fill";
     targetBin.save()
+
+    // write log
+    const trashlog = new Trashlog();
+    trashlog.wasteType = req.body.wasteType
+    trashlog.custodian = "Jaydon Herwiz"
+    trashlog.room = req.body.binname
+    trashlog.date = new Date()
+    trashlog.save()
     res.send({"status":"success"})
 })
 
