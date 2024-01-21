@@ -107,6 +107,12 @@ body {
     font-family: 'Lexend';
     display: inline-block;
     width: max-content;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.logout button:hover {
+    background-color: #E4EFFF;  /* Lighter shade on hover */
+    color: #285E98;  /* White text on hover */
 }
 
 /* Add additional styling as needed for responsiveness */
