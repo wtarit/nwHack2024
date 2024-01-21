@@ -13,15 +13,12 @@ body {
 .big-container {
     position: absolute;
     display: flex;
-    align-items: center;
-    justify-content: center;
     flex-direction: column;
     padding: 0 20px;
     height: 100%;
     margin-top: 50px;
     width: 100%;
     font-family: 'Lexend';
-    overflow: visible;
 }
 
 .admin-container {
@@ -152,7 +149,26 @@ caption {
     display: inline-block;
 }
 
-.bar-chart {
+#map-container {
+    height: 310px;
+    width: 500px;
+    margin-left: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+}
+
+.extra {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    padding: 15px 20px;
+    border-radius: 10px;
+}
+
+.extra img {
     width: 500px;
     height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
